@@ -10,7 +10,8 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         public ProdutoDAO()
         {
-            this.conexao = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=LojaDB;Trusted_Connection=true;");
+            //this.conexao = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=LojaDB;Trusted_Connection=true;");
+            this.conexao = new SqlConnection(@"Server=WKS14\SQLEXPRESS;Database=vtr_alura_entity;User Id=sa;Password=12345;");
             this.conexao.Open();
         }
 
