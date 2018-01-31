@@ -11,7 +11,7 @@ namespace Alura.Loja.Testes.ConsoleApp
         static void Main(string[] args)
         {
             //GravarUsandoEntity();
-            RecuperarProdutos();
+            //RecuperarProdutos();
             //RemoveProduto();
             //AtualizarProduto();
             //RecuperarProdutos();
