@@ -10,8 +10,13 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            GravarUsandoEntity();
-            //GravarUsandoAdoNet();
+            //GravarUsandoEntity();
+            RecuperarProdutos();
+            //RemoveProduto();
+            //AtualizarProduto();
+            //RecuperarProdutos();
+            //// -- GravarUsandoAdoNet(); -- ////
+            //Console.ReadKey();
         }
 
         private static void GravarUsandoEntity()
@@ -21,10 +26,45 @@ namespace Alura.Loja.Testes.ConsoleApp
             p.Categoria = "Livros";
             p.Preco = 19.89;
 
-            using (var context = new LojaContext())
+            using (var context = new ProdutoDAOEntity())
             {
-                context.Produtos.Add(p);
-                context.SaveChanges();
+                context.Adicionar(p);
+            }
+        }
+
+        private static void RecuperarProdutos()
+        {
+            using (var context = new ProdutoDAOEntity())
+            {
+                List<Produto> produtos = context.Produtos();
+                Console.WriteLine($"Foram encontrados {produtos.Count} registros!");
+                produtos.ForEach(p => Console.WriteLine(p));
+            }
+        }
+
+        private static void RemoveProduto()
+        {
+            using (var context = new ProdutoDAOEntity())
+            {
+                Produto produto = context.Produtos().Last();
+                if (produto != null)
+                {
+                    context.Remover(produto);
+                }
+            }
+        }
+
+        private static void AtualizarProduto()
+        {
+            using (var context = new ProdutoDAOEntity())
+            {
+                //Produto produto = context.Produtos.Where(p => p.Nome.Contains("Pedra")).FirstOrDefault();
+                Produto produto = context.Produtos().Where(p => p.Nome.Contains("Pedra")).FirstOrDefault();
+                if (produto != null)
+                {
+                    produto.Preco = 15.94;
+                    context.Atualizar(produto);
+                }
             }
         }
 
