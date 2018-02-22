@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Alura.Loja.Testes.ConsoleApp
 {
-    class Compra
+    public class Compra
     {
         public int Id { get; set; }
         public int Quantidade { get; set; }

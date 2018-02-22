@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,6 +11,63 @@ namespace Alura.Loja.Testes.ConsoleApp
     class Program
     {
         static void Main(string[] args)
+        {
+            //ExibePromocoesRelacionado();
+
+            using (var contexto = new LojaContext())
+            {
+                var cliente = contexto.Clientes
+                    //.Include("EnderecoDeEntrega") //Assim funciona
+                    .Include(c => c.EnderecoDeEntrega)
+                    .FirstOrDefault();
+                Console.WriteLine(cliente);
+                Console.WriteLine(cliente.EnderecoDeEntrega);
+
+
+                var produto = contexto.Produtos.
+                    Where(p => p.Id.Equals(5))
+                    //.Include(p => p.Compras)
+                    .FirstOrDefault();
+                Console.WriteLine(produto);
+
+                contexto.Entry(produto)
+                    .Collection(p => p.Compras)
+                    .Query()
+                    .Where(c => c.Preco > 10)
+                    .Load();
+
+                foreach (var compra in produto.Compras)
+                {
+                    Console.WriteLine(compra);
+                }
+
+                
+
+            }
+
+            Console.ReadKey();
+
+        }
+
+        private static void ExibePromocoesRelacionado()
+        {
+            using (var contexto = new LojaContext())
+            {
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                var promocoes = contexto
+                    .Promocoes
+                    .Include(p => p.Produtos)
+                    .ThenInclude(pp => pp.Produto)
+                    .FirstOrDefault();
+
+                Console.WriteLine(promocoes);
+            }
+        }
+
+        private static void Salvar1to1()
         {
             var pessoa = new Cliente
             {
@@ -35,9 +93,6 @@ namespace Alura.Loja.Testes.ConsoleApp
                 var clientes = contexto.Clientes.ToList();
                 clientes.ForEach(c => Console.WriteLine(c));
             }
-
-            Console.ReadKey();
-
         }
 
         private static void GravarUsandoEntity()
@@ -105,7 +160,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         private static void NToM()
         {
-            /*
+           
             var promocao = new Promocao();
             promocao.Descricao = "Promoção de Informática";
             promocao.DataInicio = DateTime.Now;
@@ -114,21 +169,20 @@ namespace Alura.Loja.Testes.ConsoleApp
             promocao.IncluirProduto(new Produto { Nome = "Monitor AOC 19'", PrecoUnitario = 155.68, Unidade = "Un"});
             promocao.IncluirProduto(new Produto { Nome = "Mouse Logitec ", PrecoUnitario = 19.88, Unidade = "Un" });
             promocao.IncluirProduto(new Produto { Nome = "Teclado Logitec", PrecoUnitario = 25.69, Unidade = "Un" });
-            */
             using (var contexto = new LojaContext())
             {
                 var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
                 var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(SqlLoggerProvider.Create());
 
-                /*contexto.Promocoes.Add(promocao);*/
-                /*contexto.ExibeEntries();*/
+                contexto.Promocoes.Add(promocao);
+                contexto.ExibeEntries();
                 //var promocao = contexto.Promocoes.Find(1);
                 //Console.WriteLine(promocao);
 
                 //contexto.Promocoes.Remove(promocao);
 
-                //contexto.SaveChanges();
+                contexto.SaveChanges();
             }
 
             Console.ReadKey();
