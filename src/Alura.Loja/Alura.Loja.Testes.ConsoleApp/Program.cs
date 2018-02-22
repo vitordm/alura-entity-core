@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Alura.Loja.Testes.ConsoleApp
 {
@@ -10,21 +11,44 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            //GravarUsandoEntity();
-            //RecuperarProdutos();
-            //RemoveProduto();
-            //AtualizarProduto();
-            //RecuperarProdutos();
-            //// -- GravarUsandoAdoNet(); -- ////
-            //Console.ReadKey();
+
+            /*
+            var promocao = new Promocao();
+            promocao.Descricao = "Promoção de Informática";
+            promocao.DataInicio = DateTime.Now;
+            promocao.DataTermino = DateTime.Now.AddDays(7);
+
+            promocao.IncluirProduto(new Produto { Nome = "Monitor AOC 19'", PrecoUnitario = 155.68, Unidade = "Un"});
+            promocao.IncluirProduto(new Produto { Nome = "Mouse Logitec ", PrecoUnitario = 19.88, Unidade = "Un" });
+            promocao.IncluirProduto(new Produto { Nome = "Teclado Logitec", PrecoUnitario = 25.69, Unidade = "Un" });
+            */
+            using (var contexto = new LojaContext())
+            {
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                /*contexto.Promocoes.Add(promocao);*/
+                /*contexto.ExibeEntries();*/
+                //var promocao = contexto.Promocoes.Find(1);
+                //Console.WriteLine(promocao);
+
+                //contexto.Promocoes.Remove(promocao);
+
+                //contexto.SaveChanges();
+            }
+
+            Console.ReadKey();
         }
 
         private static void GravarUsandoEntity()
         {
-            Produto p = new Produto();
-            p.Nome = "Harry Potter e a Pedra Filosofal";
-            p.Categoria = "Livros";
-            p.PrecoUnitario = 19.89;
+            Produto p = new Produto
+            {
+                Nome = "Harry Potter e a Pedra Filosofal",
+                Categoria = "Livros",
+                PrecoUnitario = 19.89
+            };
 
             using (var context = new ProdutoDAOEntity())
             {
@@ -58,7 +82,6 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             using (var context = new ProdutoDAOEntity())
             {
-                //Produto produto = context.Produtos.Where(p => p.Nome.Contains("Pedra")).FirstOrDefault();
                 Produto produto = context.Produtos().Where(p => p.Nome.Contains("Pedra")).FirstOrDefault();
                 if (produto != null)
                 {
@@ -80,5 +103,6 @@ namespace Alura.Loja.Testes.ConsoleApp
                 repo.Adicionar(p);
             }
         }
+
     }
 }

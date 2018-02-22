@@ -8,7 +8,7 @@ namespace Alura.Loja.Testes.ConsoleApp
 {
     class ProdutoDAOEntity : IProdutoDAO, IDisposable
     {
-        private LojaContext _context;
+        private LojaContext _context = new LojaContext();
 
         public void Adicionar(Produto p)
         {
