@@ -11,34 +11,33 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var pessoa = new Cliente
+            {
+                Nome = "Vitor Oliveira",
+                EnderecoDeEntrega = new Endereco
+                {
+                    Numero = 1819,
+                    Logradouro = "Rua das Avenidas",
+                    Complemento = "Perto",
+                    Bairro = "Pureza",
+                    Cidade = "Não me toque"
+                }
+            };
 
-            /*
-            var promocao = new Promocao();
-            promocao.Descricao = "Promoção de Informática";
-            promocao.DataInicio = DateTime.Now;
-            promocao.DataTermino = DateTime.Now.AddDays(7);
-
-            promocao.IncluirProduto(new Produto { Nome = "Monitor AOC 19'", PrecoUnitario = 155.68, Unidade = "Un"});
-            promocao.IncluirProduto(new Produto { Nome = "Mouse Logitec ", PrecoUnitario = 19.88, Unidade = "Un" });
-            promocao.IncluirProduto(new Produto { Nome = "Teclado Logitec", PrecoUnitario = 25.69, Unidade = "Un" });
-            */
             using (var contexto = new LojaContext())
             {
                 var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
                 var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(SqlLoggerProvider.Create());
 
-                /*contexto.Promocoes.Add(promocao);*/
-                /*contexto.ExibeEntries();*/
-                //var promocao = contexto.Promocoes.Find(1);
-                //Console.WriteLine(promocao);
-
-                //contexto.Promocoes.Remove(promocao);
-
-                //contexto.SaveChanges();
+                contexto.Clientes.Add(pessoa);
+                contexto.SaveChanges();
+                var clientes = contexto.Clientes.ToList();
+                clientes.ForEach(c => Console.WriteLine(c));
             }
 
             Console.ReadKey();
+
         }
 
         private static void GravarUsandoEntity()
@@ -102,6 +101,37 @@ namespace Alura.Loja.Testes.ConsoleApp
             {
                 repo.Adicionar(p);
             }
+        }
+
+        private static void NToM()
+        {
+            /*
+            var promocao = new Promocao();
+            promocao.Descricao = "Promoção de Informática";
+            promocao.DataInicio = DateTime.Now;
+            promocao.DataTermino = DateTime.Now.AddDays(7);
+
+            promocao.IncluirProduto(new Produto { Nome = "Monitor AOC 19'", PrecoUnitario = 155.68, Unidade = "Un"});
+            promocao.IncluirProduto(new Produto { Nome = "Mouse Logitec ", PrecoUnitario = 19.88, Unidade = "Un" });
+            promocao.IncluirProduto(new Produto { Nome = "Teclado Logitec", PrecoUnitario = 25.69, Unidade = "Un" });
+            */
+            using (var contexto = new LojaContext())
+            {
+                var serviceProvider = contexto.GetInfrastructure<IServiceProvider>();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                /*contexto.Promocoes.Add(promocao);*/
+                /*contexto.ExibeEntries();*/
+                //var promocao = contexto.Promocoes.Find(1);
+                //Console.WriteLine(promocao);
+
+                //contexto.Promocoes.Remove(promocao);
+
+                //contexto.SaveChanges();
+            }
+
+            Console.ReadKey();
         }
 
     }
