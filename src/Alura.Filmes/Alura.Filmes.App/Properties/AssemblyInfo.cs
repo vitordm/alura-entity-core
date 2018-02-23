@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
-[assembly: AssemblyTitle("Alura.Loja.Testes.ConsoleApp")]
+[assembly: AssemblyTitle("Alura.Filmes.App")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Alura.Loja.Testes.ConsoleApp")]
+[assembly: AssemblyProduct("Alura.Filmes.App")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // O GUID a seguir será destinado à ID de typelib se este projeto for exposto para COM
-[assembly: Guid("d59a32d0-b933-45d7-8922-483bf3c08524")]
+[assembly: Guid("47443db8-7227-43fd-bb2b-add571d9df81")]
 
 // As informações da versão de um assembly consistem nos quatro valores a seguir:
 //
