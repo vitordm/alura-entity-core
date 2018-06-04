@@ -8,6 +8,6 @@ namespace Alura.Filmes.App
 {
     public class DatabasePassword
     {
-        public static DatabasePassword = "";
+        public static string Password => "";
     }
 }
