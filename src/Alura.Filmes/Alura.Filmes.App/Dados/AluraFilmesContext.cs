@@ -1,5 +1,6 @@
 ﻿using Alura.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Alura.Filmes.App.Dados
 {
@@ -9,7 +10,7 @@ namespace Alura.Filmes.App.Dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer($"Server=172.16.8.104;Database=AluraFilmes;User Id=SA;Password={DatabasePassword.Password};");
+            optionsBuilder.UseSqlServer(DatabasePassword.ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +30,11 @@ namespace Alura.Filmes.App.Dados
                 .Property(a => a.UltimoNome)
                 .HasColumnName("last_name")
                 .HasColumnType("varchar(45)")
+                .IsRequired();
+            modelBuilder.Entity<Ator>()
+                .Property<DateTime>("last_update")
+                .HasColumnType("DATETIME")
+                .HasDefaultValueSql("getdate()")
                 .IsRequired();
         }
     }
