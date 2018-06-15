@@ -13,19 +13,10 @@ namespace Alura.Filmes.App
             {
                 context.LogSQLToConsole();
 
-                var novoAtor = new Ator()
+                var filmes = context.Filmes;
+                foreach (var filme in filmes)
                 {
-                    PrimeiroNome = "Lisa",
-                    UltimoNome = "Simpson"
-                };
-
-                context.Atores.Add(novoAtor);
-                //context.Entry(novoAtor).Property("last_update").CurrentValue = DateTime.Now;
-                context.SaveChanges();
-
-                foreach (var ator in context.Atores)
-                {
-                    Console.WriteLine($"{ator.Id} - {ator.PrimeiroNome} - " + context.Entry(ator).Property("last_update").CurrentValue);
+                    Console.WriteLine($"{filme.Id} - {filme.Titulo} ({filme.AnoLancamento})");
                 }
             }
 
