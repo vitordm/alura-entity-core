@@ -14,12 +14,10 @@ namespace Alura.Filmes.App
             {
                 context.LogSQLToConsole();
 
-                var filmeRepository = new FilmeRepository();
-                var filme = filmeRepository.BuscaPrimeiroFilmeRelacionado(1);
-                Console.WriteLine($"{filme.Id}  - {filme.Titulo}({filme.AnoLancamento})");
-                foreach(var ator in filme.Atores)
+                var idiomas = context.Idiomas;
+                foreach(var idioma in idiomas)
                 {
-                    Console.WriteLine($"{ator.Ator.Id} - {ator.Ator.UltimoNome},{ator.Ator.PrimeiroNome}");
+                    Console.WriteLine(idioma);
                 }
             }
 

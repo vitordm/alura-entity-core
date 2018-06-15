@@ -27,12 +27,12 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnName("release_year")
                 .HasColumnType("varchar(4)");
             builder
-                .Property(f => f.LinguagemId)
+                .Property(f => f.IdiomaId)
                 .HasColumnName("language_id")
                 .HasColumnType("tinyint")
                 .IsRequired();
             builder
-                .Property(f => f.LinguagemOriginalId)
+                .Property(f => f.IdiomaOriginalId)
                 .HasColumnName("original_language_id")
                 .HasColumnType("tinyint");
             builder

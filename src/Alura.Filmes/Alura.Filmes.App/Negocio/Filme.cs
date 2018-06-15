@@ -8,8 +8,8 @@ namespace Alura.Filmes.App.Negocio
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string AnoLancamento { get; set; }
-        public byte LinguagemId { get; set; }
-        public byte? LinguagemOriginalId { get; set; }
+        public byte IdiomaId { get; set; }
+        public byte? IdiomaOriginalId { get; set; }
         public short Duracao { get; set; }
         public string Avaliacao { get; set; }
         public IList<FilmeAtor> Atores { get; set; }
