@@ -1,6 +1,5 @@
 ﻿using Alura.Filmes.App.Negocio;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Alura.Filmes.App.Dados
 {
@@ -19,6 +18,7 @@ namespace Alura.Filmes.App.Dados
             //base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new AtorConfiguration());
             modelBuilder.ApplyConfiguration(new FilmeConfiguration());
+            modelBuilder.ApplyConfiguration(new FilmeAtorConfiguration());
         }
     }
 }

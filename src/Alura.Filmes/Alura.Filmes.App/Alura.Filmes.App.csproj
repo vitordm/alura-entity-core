@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="Dados\AluraFilmesContext.cs" />
     <Compile Include="Dados\AtorConfiguration.cs" />
+    <Compile Include="Dados\FilmeAtorConfiguration.cs" />
     <Compile Include="Dados\FilmeConfiguration.cs" />
     <Compile Include="DatabasePassword.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
@@ -136,8 +137,10 @@
     <Compile Include="Migrations\AluraFilmesContextModelSnapshot.cs" />
     <Compile Include="Negocio\Ator.cs" />
     <Compile Include="Negocio\Filme.cs" />
+    <Compile Include="Negocio\FilmeAtor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\FilmeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -14,5 +14,6 @@ namespace Alura.Filmes.App.Negocio
         public int Id { get; set; }
         public string PrimeiroNome { get; set; }
         public string UltimoNome { get; set; }
+        public IEnumerable<FilmeAtor> Filmografia { get; internal set; }
     }
 }
