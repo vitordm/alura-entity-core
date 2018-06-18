@@ -26,7 +26,9 @@ namespace Alura.Filmes.App.Dados
                 .Property(f => f.AnoLancamento)
                 .HasColumnName("release_year")
                 .HasColumnType("varchar(4)");
-            builder
+
+            /*
+             builder
                 .Property(f => f.IdiomaId)
                 .HasColumnName("language_id")
                 .HasColumnType("tinyint")
@@ -35,6 +37,7 @@ namespace Alura.Filmes.App.Dados
                 .Property(f => f.IdiomaOriginalId)
                 .HasColumnName("original_language_id")
                 .HasColumnType("tinyint");
+            */
             builder
                 .Property(f => f.Duracao)
                 .HasColumnName("length")
@@ -48,6 +51,17 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnType("DATETIME")
                 .HasDefaultValueSql("getdate()")
                 .IsRequired();
+
+            builder.Property<byte>("language_id");
+            builder.Property<byte?>("original_language_id");
+
+            builder.HasOne(f => f.IdiomaFalado)
+                .WithMany(i => i.FilmesFalados)
+                .HasForeignKey("language_id");
+
+            builder.HasOne(f => f.IdiomaOriginal)
+                .WithMany(i => i.FilmesOriginais)
+                .HasForeignKey("original_language_id");
         }
     }
 }

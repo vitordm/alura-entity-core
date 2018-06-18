@@ -10,16 +10,16 @@ namespace Alura.Filmes.App
     {
         static void Main(string[] args)
         {
-            using (var context = new AluraFilmesContext())
-            {
-                context.LogSQLToConsole();
 
-                var idiomas = context.Idiomas;
-                foreach(var idioma in idiomas)
-                {
-                    Console.WriteLine(idioma);
-                }
+            var filmeRepository = new FilmeRepository();
+            foreach(var filme in filmeRepository.BuscaFilmesRelacionadosIdiomas())
+            {
+                Console.WriteLine(filme.ToString());
+                Console.WriteLine(filme.IdiomaFalado);
+                Console.WriteLine(filme.IdiomaOriginal);
+                Console.WriteLine("--------------------");
             }
+        
 
             Console.ReadKey();
         }
