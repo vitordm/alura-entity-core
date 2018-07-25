@@ -131,9 +131,9 @@
     <Compile Include="Dados\IdiomaConfiguration.cs" />
     <Compile Include="DatabasePassword.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
-    <Compile Include="Migrations\20180608193607_Inicial.cs" />
-    <Compile Include="Migrations\20180608193607_Inicial.designer.cs">
-      <DependentUpon>20180608193607_Inicial.cs</DependentUpon>
+    <Compile Include="Migrations\20180725140120_Inicial.cs" />
+    <Compile Include="Migrations\20180725140120_Inicial.designer.cs">
+      <DependentUpon>20180725140120_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AluraFilmesContextModelSnapshot.cs" />
     <Compile Include="Negocio\Ator.cs" />
