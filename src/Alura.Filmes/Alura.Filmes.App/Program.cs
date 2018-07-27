@@ -11,16 +11,22 @@ namespace Alura.Filmes.App
         static void Main(string[] args)
         {
 
-            var filmeRepository = new FilmeRepository();
-            foreach(var filme in filmeRepository.BuscaFilmesRelacionadosIdiomas())
+            using (var context = new AluraFilmesContext())
             {
-                Console.WriteLine(filme.ToString());
-                Console.WriteLine(filme.IdiomaFalado);
-                Console.WriteLine(filme.IdiomaOriginal);
-                Console.WriteLine("--------------------");
-            }
-        
+                try
+                {
+                    context.LogSQLToConsole();
+                    var vitor1 = new Ator { PrimeiroNome = "Vitor", UltimoNome = "Oliveira" };
+                    var vitor2 = new Ator { PrimeiroNome = "Vitor", UltimoNome = "Oliveira" };
+                    context.Atores.AddRange(vitor1, vitor2);
+                    context.SaveChanges();
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                
 
+            }
             Console.ReadKey();
         }
     }

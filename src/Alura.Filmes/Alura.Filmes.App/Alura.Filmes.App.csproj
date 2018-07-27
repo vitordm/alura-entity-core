@@ -135,6 +135,14 @@
     <Compile Include="Migrations\20180725140120_Inicial.designer.cs">
       <DependentUpon>20180725140120_Inicial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180725150719_IndiceAtorUltimoNome.cs" />
+    <Compile Include="Migrations\20180725150719_IndiceAtorUltimoNome.designer.cs">
+      <DependentUpon>20180725150719_IndiceAtorUltimoNome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180727145842_UniqueAtorPrimeiroUltimoNome.cs" />
+    <Compile Include="Migrations\20180727145842_UniqueAtorPrimeiroUltimoNome.designer.cs">
+      <DependentUpon>20180727145842_UniqueAtorPrimeiroUltimoNome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AluraFilmesContextModelSnapshot.cs" />
     <Compile Include="Negocio\Ator.cs" />
     <Compile Include="Negocio\Filme.cs" />
