@@ -43,7 +43,7 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnName("length")
                 .HasColumnType("smallint");
             builder
-                .Property(f => f.Avaliacao)
+                .Property(f => f.Classificacao)
                 .HasColumnName("rating")
                 .HasColumnType("varchar(10)");
             builder
