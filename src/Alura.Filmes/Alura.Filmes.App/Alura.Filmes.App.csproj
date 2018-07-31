@@ -126,10 +126,12 @@
   <ItemGroup>
     <Compile Include="Dados\AluraFilmesContext.cs" />
     <Compile Include="Dados\AtorConfiguration.cs" />
+    <Compile Include="Dados\ClienteConfiguration.cs" />
     <Compile Include="Dados\FilmeAtorConfiguration.cs" />
     <Compile Include="Dados\FilmeConfiguration.cs" />
     <Compile Include="Dados\IdiomaConfiguration.cs" />
     <Compile Include="DatabasePassword.cs" />
+    <Compile Include="Extensions\ClassificacaoIndicativaExtensions.cs" />
     <Compile Include="Extensions\DbContextExtensions.cs" />
     <Compile Include="Migrations\20180725140120_Inicial.cs" />
     <Compile Include="Migrations\20180725140120_Inicial.designer.cs">
@@ -147,11 +149,17 @@
     <Compile Include="Migrations\20180727185115_FilmeCheckConstraint.designer.cs">
       <DependentUpon>20180727185115_FilmeCheckConstraint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180730181715_Enumerador.cs" />
+    <Compile Include="Migrations\20180730181715_Enumerador.designer.cs">
+      <DependentUpon>20180730181715_Enumerador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AluraFilmesContextModelSnapshot.cs" />
     <Compile Include="Negocio\Ator.cs" />
     <Compile Include="Negocio\ClassificacaoIndicativa.cs" />
+    <Compile Include="Negocio\Cliente.cs" />
     <Compile Include="Negocio\Filme.cs" />
     <Compile Include="Negocio\FilmeAtor.cs" />
+    <Compile Include="Negocio\Funcionario.cs" />
     <Compile Include="Negocio\Idioma.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

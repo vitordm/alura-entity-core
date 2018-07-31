@@ -8,6 +8,8 @@ namespace Alura.Filmes.App.Dados
         public DbSet<Ator> Atores { get; set; }
         public DbSet<Filme> Filmes { get; set; }
         public DbSet<Idioma> Idiomas { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //base.OnConfiguring(optionsBuilder);
@@ -21,6 +23,7 @@ namespace Alura.Filmes.App.Dados
             modelBuilder.ApplyConfiguration(new FilmeConfiguration());
             modelBuilder.ApplyConfiguration(new FilmeAtorConfiguration());
             modelBuilder.ApplyConfiguration(new IdiomaConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
         }
     }
 }

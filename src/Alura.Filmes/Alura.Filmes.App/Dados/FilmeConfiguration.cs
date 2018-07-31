@@ -43,7 +43,7 @@ namespace Alura.Filmes.App.Dados
                 .HasColumnName("length")
                 .HasColumnType("smallint");
             builder
-                .Property(f => f.Classificacao)
+                .Property(f => f.TextoClassificacao)
                 .HasColumnName("rating")
                 .HasColumnType("varchar(10)");
             builder
@@ -62,6 +62,8 @@ namespace Alura.Filmes.App.Dados
             builder.HasOne(f => f.IdiomaOriginal)
                 .WithMany(i => i.FilmesOriginais)
                 .HasForeignKey("original_language_id");
+
+            builder.Ignore(f => f.Classificacao);
         }
     }
 }

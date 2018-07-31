@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Alura.Filmes.App.Extensions;
 
 namespace Alura.Filmes.App.Negocio
 {
@@ -11,7 +12,18 @@ namespace Alura.Filmes.App.Negocio
         //public byte IdiomaId { get; set; }
         //public byte? IdiomaOriginalId { get; set; }
         public short Duracao { get; set; }
-        public ClassificacaoIndicativa Classificacao { get; set; }
+        public string TextoClassificacao { get; private set; }
+        public ClassificacaoIndicativa Classificacao
+        {
+            get
+            {
+                return TextoClassificacao.ParaValor();
+            }
+            set
+            {
+                TextoClassificacao = value.ParaString();
+            }
+        }
         public IList<FilmeAtor> Atores { get; set; }
         public Idioma IdiomaFalado { get; set; }
         public Idioma IdiomaOriginal { get; set; }
