@@ -4,6 +4,7 @@ using Alura.Filmes.App.Negocio;
 using Alura.Filmes.App.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Alura.Filmes.App
@@ -16,15 +17,20 @@ namespace Alura.Filmes.App
             using (var context = new AluraFilmesContext())
             {
                 context.LogSQLToConsole();
-                var top5Atores = context.Atores.FromSql(@" select a.*
-        from actor a
-            inner join top5_most_starred_actors filmes on filmes.actor_id = a.actor_id")
-                .Include(a => a.Filmografia);
+                var categoria = "Action";
+                var paramCategoria = new SqlParameter("@categoria", categoria);
 
-                foreach (var ator in top5Atores)
+                var paramTotal = new SqlParameter()
                 {
-                    Console.WriteLine($"{ator.PrimeiroNome} - {ator.Filmografia.Count()}");
-                }
+                    ParameterName = "@total",
+                    Direction = System.Data.ParameterDirection.Output,
+                    Size = 4
+
+                };
+                context.Database
+                    .ExecuteSqlCommand("total_actors_from_given_category @categoria, @total OUT", paramCategoria, paramTotal);
+
+                Console.WriteLine($"O total da categoria '{categoria}' é {paramTotal.Value}");
 
             }
             Console.ReadKey();
